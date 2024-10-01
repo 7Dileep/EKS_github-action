@@ -1,29 +1,37 @@
-apiVersion: apps/v1 
+apiVersion: apps/v1
+
 kind: Deployment
+
 metadata:
-  name: git-deployment
-  labels: 
-     app: regapp
+
+  name: nginx-deployment
 
 spec:
-  replicas: 2 
+
+  replicas: 2
+
   selector:
+
     matchLabels:
-      app: regapp
+
+      app: nginx
 
   template:
+
     metadata:
+
       labels:
-        app: regapp
+
+        app: nginx
+
     spec:
+
       containers:
-      - name: regapp
-        image: ashfaque9x/regapp
-        imagePullPolicy: Always
+
+      - name: nginx
+
+        image: nginx:latest
+
         ports:
-        - containerPort: 8080
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+
+        - containerPort: 80
